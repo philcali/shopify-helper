@@ -10,6 +10,7 @@ import java.util.StringJoiner;
 import me.philcali.shopify.client.IHasher;
 import me.philcali.shopify.client.IShopifyIntegration;
 import me.philcali.shopify.client.IShopifyService;
+import me.philcali.shopify.client.IShopifyServiceProvider;
 import me.philcali.shopify.client.ShopifyClientConfig;
 import me.philcali.shopify.client.exception.ShopifyServiceException;
 import me.philcali.shopify.data.AuthToken;
@@ -17,9 +18,15 @@ import okhttp3.HttpUrl;
 
 public class ShopifyIntegrationImpl implements IShopifyIntegration {
     private final ShopifyClientConfig config;
+    private final IShopifyServiceProvider provider;
 
     public ShopifyIntegrationImpl(ShopifyClientConfig config) {
+        this(config, new ShopifyServiceProviderImpl());
+    }
+
+    public ShopifyIntegrationImpl(ShopifyClientConfig config, IShopifyServiceProvider provider) {
         this.config = config;
+        this.provider = provider;
     }
 
     @Override
@@ -47,7 +54,7 @@ public class ShopifyIntegrationImpl implements IShopifyIntegration {
 
     @Override
     public IShopifyService getService(String shop, Optional<String> accessToken) {
-        return new ShopifyServiceProviderImpl().getService(shop, accessToken);
+        return provider.getService(shop, accessToken);
     }
 
     @Override
