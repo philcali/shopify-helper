@@ -10,7 +10,6 @@
   <modules>
   	<module>shopify-data</module>
   	<module>shopify-client</module>
-    <module>shopify-crypto</module>
   </modules>
 
   <name>shopify</name>
