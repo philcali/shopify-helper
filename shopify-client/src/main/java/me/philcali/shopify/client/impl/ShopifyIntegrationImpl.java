@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.StringJoiner;
 
 import me.philcali.shopify.client.IHasher;
 import me.philcali.shopify.client.IShopifyIntegration;
+import me.philcali.shopify.client.IShopifyService;
 import me.philcali.shopify.client.ShopifyClientConfig;
 import me.philcali.shopify.client.exception.ShopifyServiceException;
 import me.philcali.shopify.data.AuthToken;
@@ -41,6 +43,11 @@ public class ShopifyIntegrationImpl implements IShopifyIntegration {
                 .addEncodedQueryParameter("state", urlEncode(state.toString()))
                 .build();
         return url.toString();
+    }
+
+    @Override
+    public IShopifyService getService(String shop, Optional<String> accessToken) {
+        return new ShopifyServiceProviderImpl().getService(shop, accessToken);
     }
 
     @Override

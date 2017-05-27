@@ -3,11 +3,9 @@ package me.philcali.shopify.client;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Map;
-import java.util.Optional;
 import java.util.StringJoiner;
 
 import me.philcali.shopify.client.exception.HashingException;
-import me.philcali.shopify.client.impl.ShopifyServiceProviderImpl;
 import me.philcali.shopify.data.AuthToken;
 
 public interface IShopifyIntegration extends IShopifyServiceProvider {
@@ -15,12 +13,11 @@ public interface IShopifyIntegration extends IShopifyServiceProvider {
 
     String getAuthUrl(String shop, String...state);
 
-    @Override
-    default IShopifyService getService(String shop, Optional<String> accessToken) {
-        return new ShopifyServiceProviderImpl().getService(shop, accessToken);
-    }
-
     AuthToken login(String shop, String code);
+
+    default String[] parseState(String states) {
+        return states.split(":");
+    }
 
     default boolean validate(Map<String, String> params) {
         StringJoiner paramJoiner = new StringJoiner("&");
