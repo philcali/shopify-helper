@@ -1,6 +1,7 @@
 package me.philcali.shopify.client.impl;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Arrays;
@@ -27,6 +28,11 @@ public class ShopifyIntegrationImpl implements IShopifyIntegration {
     public ShopifyIntegrationImpl(ShopifyClientConfig config, IShopifyServiceProvider provider) {
         this.config = config;
         this.provider = provider;
+    }
+
+    @Override
+    public <T> T convert(InputStream input, Class<T> clazz) throws IOException {
+        return provider.convert(input, clazz);
     }
 
     @Override
