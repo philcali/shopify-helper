@@ -6,17 +6,20 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 import me.philcali.shopify.client.exception.HashingException;
+import me.philcali.shopify.client.impl.ShopifyAuthManager;
 import me.philcali.shopify.data.AuthToken;
 
 public interface IShopifyIntegration extends IShopifyServiceProvider {
+    ShopifyAuthManager createAuth(String shop);
+
     IHasher createHasher();
 
-    String getAuthUrl(String shop, String...state);
+    default String getAuthUrl(String shop, String...state) {
+        return createAuth(shop).getAuthUrl(state);
+    }
 
-    AuthToken login(String shop, String code);
-
-    default String[] parseState(String states) {
-        return states.split(":");
+    default AuthToken login(String shop, String code) {
+        return createAuth(shop).exchange(code);
     }
 
     default boolean validate(Map<String, String> params) {

@@ -5,6 +5,7 @@ import java.util.Map;
 import me.philcali.shopify.data.AuthToken;
 import me.philcali.shopify.data.comment.CommentContainer;
 import me.philcali.shopify.data.comment.Comments;
+import me.philcali.shopify.data.shop.Shop;
 import me.philcali.shopify.data.webhook.WebhookContainer;
 import me.philcali.shopify.data.webhook.Webhooks;
 import retrofit2.Call;
@@ -38,6 +39,9 @@ public interface IShopifyService {
 
     @GET("admin/comments.json")
     Call<Comments> getComments(@QueryMap Map<String, String> options);
+
+    @GET("admin/shop.json")
+    Call<Shop> getShop();
 
     @GET("admin/webhooks.json")
     Call<Webhooks> getWebhooks();

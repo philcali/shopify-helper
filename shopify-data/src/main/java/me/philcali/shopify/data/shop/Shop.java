@@ -2,7 +2,9 @@ package me.philcali.shopify.data.shop;
 
 import java.util.Date;
 
-public class Shop {
+import me.philcali.oauth.api.IProfile;
+
+public class Shop implements IProfile {
     private String address1;
     private String address2;
     private String city;
@@ -17,7 +19,7 @@ public class Shop {
     private String email;
     private String googleAppsDomain;
     private String googleAppsLoginEnabled;
-    private Long id;
+    private String id;
     private String latitude;
     private String longitude;
     private String moneyFormat;
@@ -89,8 +91,14 @@ public class Shop {
         return domain;
     }
 
+    @Override
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public String getFirstName() {
+        return getShopOwner();
     }
 
     public String getGoogleAppsDomain() {
@@ -105,8 +113,20 @@ public class Shop {
         return ianaTimezone;
     }
 
-    public Long getId() {
+    @Override
+    public String getId() {
         return id;
+    }
+
+    @Override
+    public String getImage() {
+        // TODO: make a better shim
+        return null;
+    }
+
+    @Override
+    public String getLastName() {
+        return getShopOwner();
     }
 
     public String getLatitude() {
@@ -285,7 +305,7 @@ public class Shop {
         this.ianaTimezone = ianaTimezone;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
