@@ -2,7 +2,7 @@ package me.philcali.shopify.data.shop;
 
 import java.util.Date;
 
-import me.philcali.oauth.api.IProfile;
+import me.philcali.oauth.api.model.IProfile;
 
 public class Shop implements IProfile {
     private String address1;

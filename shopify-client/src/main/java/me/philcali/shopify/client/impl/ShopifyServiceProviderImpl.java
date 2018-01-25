@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 
-import me.philcali.oauth.api.ClientConfig;
+import me.philcali.oauth.api.model.IClientConfig;
 import me.philcali.shopify.client.IShopifyService;
 import me.philcali.shopify.client.IShopifyServiceProvider;
 import okhttp3.HttpUrl;
@@ -19,13 +19,13 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class ShopifyServiceProviderImpl implements IShopifyServiceProvider {
     private ObjectMapper mapper;
-    private ClientConfig config;
+    private IClientConfig config;
 
-    public ShopifyServiceProviderImpl(final ClientConfig config) {
-        this(new ClientConfig(), new ObjectMapper());
+    public ShopifyServiceProviderImpl(final IClientConfig config) {
+        this(config, new ObjectMapper());
     }
 
-    public ShopifyServiceProviderImpl(final ClientConfig config, final ObjectMapper mapper) {
+    public ShopifyServiceProviderImpl(final IClientConfig config, final ObjectMapper mapper) {
         this.config = config;
         this.mapper = mapper.copy();
         this.mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);

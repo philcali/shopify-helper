@@ -3,10 +3,10 @@ package me.philcali.shopify.client.impl;
 import java.io.IOException;
 import java.util.StringJoiner;
 
-import me.philcali.oauth.api.ClientConfig;
 import me.philcali.oauth.api.IAuthManager;
-import me.philcali.oauth.api.IToken;
 import me.philcali.oauth.api.exception.AuthException;
+import me.philcali.oauth.api.model.IClientConfig;
+import me.philcali.oauth.api.model.IToken;
 import me.philcali.shopify.client.IShopifyServiceProvider;
 import me.philcali.shopify.data.AuthToken;
 import me.philcali.shopify.data.shop.Shop;
@@ -14,10 +14,10 @@ import okhttp3.HttpUrl;
 
 public class ShopifyAuthManager implements IAuthManager {
     private final String shop;
-    private final ClientConfig config;
+    private final IClientConfig config;
     private final IShopifyServiceProvider provider;
 
-    public ShopifyAuthManager(final String shop, final ClientConfig config, final IShopifyServiceProvider provider) {
+    public ShopifyAuthManager(final String shop, final IClientConfig config, final IShopifyServiceProvider provider) {
         this.shop = shop;
         this.config = config;
         this.provider = provider;

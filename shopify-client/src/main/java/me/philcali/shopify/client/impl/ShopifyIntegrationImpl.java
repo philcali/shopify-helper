@@ -4,21 +4,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
 
-import me.philcali.oauth.api.ClientConfig;
+import me.philcali.oauth.api.model.IClientConfig;
 import me.philcali.shopify.client.IHasher;
 import me.philcali.shopify.client.IShopifyIntegration;
 import me.philcali.shopify.client.IShopifyService;
 import me.philcali.shopify.client.IShopifyServiceProvider;
 
 public class ShopifyIntegrationImpl implements IShopifyIntegration {
-    private final ClientConfig config;
+    private final IClientConfig config;
     private final IShopifyServiceProvider provider;
 
-    public ShopifyIntegrationImpl(final ClientConfig config) {
+    public ShopifyIntegrationImpl(final IClientConfig config) {
         this(config, new ShopifyServiceProviderImpl(config));
     }
 
-    public ShopifyIntegrationImpl(final ClientConfig config, IShopifyServiceProvider provider) {
+    public ShopifyIntegrationImpl(final IClientConfig config, IShopifyServiceProvider provider) {
         this.config = config;
         this.provider = provider;
     }

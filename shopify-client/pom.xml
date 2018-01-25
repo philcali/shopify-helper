@@ -35,6 +35,11 @@
   		<version>2.8.8</version>
   	</dependency>
   	<dependency>
+  		<groupId>me.philcali.oauth</groupId>
+  		<artifactId>oauth-spi</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
   		<groupId>commons-codec</groupId>
   		<artifactId>commons-codec</artifactId>
   		<version>1.9</version>

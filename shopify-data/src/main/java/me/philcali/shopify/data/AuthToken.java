@@ -1,6 +1,6 @@
 package me.philcali.shopify.data;
 
-import me.philcali.oauth.api.IToken;
+import me.philcali.oauth.api.model.IToken;
 
 public class AuthToken implements IToken {
     private static final String APPLICATION = "SHOPIFY";
